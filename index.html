@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Adam Benson — Publications</title>
+  <style>
+    :root{
+      --accent: #0b63d3;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --muted: #94a3b8;
+      --text: #f8fafc;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 48px auto;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    p.lead {
+      margin: 6px 0 24px;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--card);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    }
+
+    .meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    a.link {
+      font-size: x-large;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a.link:hover {
+      text-decoration: underline;
+      color: #6ea8ff;
+    }
+
+  .article-thumb {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  object-position: center 30%; /* default for mobile/narrow */
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 500px) {
+  /* wider screens */
+  .article-thumb.zohran {
+    object-position: center 10%; /* shifts Zohran image down more on wide screens */
+  }
+}
+
+    .coming-soon {
+      text-align: center;
+      font-weight: 600;
+      color: white;
+      font-size: 1.1em;
+      background: linear-gradient(135deg,#0b63d3,#6ea8ff);
+      background-size: 200% 200%;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.5);
+      animation: pulse 5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    footer {
+      margin-top: 36px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+      color: #6ea8ff;
+    }
+
+    @media (max-width:540px) {
+      .container {
+        margin: 20px;
+        padding: 16px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="adam-photo.JPG" alt="My Photo" class="avatar">
+      <div>
+        <h1>Adam Benson — Published Works</h1>
+        <p class="lead">A selection of opinion and policy pieces. Click any title to open the original article.</p>
+      </div>
+    </header>
+
+    <main>
+      <article class="card">
+        <img src="declaration.JPG" alt="Endowed by Our Creator" class="article-thumb">
+        <h2><a class="link" href="https://politicalreview.byu.edu/october-2025/endowed-by-our-creator-why-rights-come-from-our-god-not-our-government" target="_blank" rel="noopener noreferrer">Endowed by Our Creator: Why Rights Come from Our God, Not Our Government &#8599;</a></h2>
+        <div class="meta">BYU Political Review — October 2025 Edition</div>
+        <p>Analyzes the philosophical origins of individual rights in American political thought, arguing that these rights stem from divine principles rather than government authority, and explores the implications for modern civic discourse.</p>
+      </article>
+      
+      <article class="card">
+        <img src="coca-cola.avif" alt="Sweetening the Deal" class="article-thumb" style="object-position: 50%;">
+        <h2><a class="link" href="https://www.deseret.com/opinion/2025/07/27/ending-sugar-tariffs-healthy-economy/" target="_blank" rel="noopener noreferrer">Sweetening the Deal — Ending Sugar Tariffs for a Healthier Economy &#8599;</a></h2>
+        <div class="meta">Deseret News — July 27, 2025</div>
+        <p>Argument in favor of removing U.S. sugar tariffs to improve consumer prices and support long-term economic efficiency. This was written and published shortly after President Trump announced that Coca-Cola would be switching from corn syrup to cane sugar.</p>
+      </article>
+
+      <article class="card">
+        <img src="Zohran.avif" alt="NYC Primary" class="article-thumb zohran">
+        <h2><a class="link" href="https://www.deseret.com/opinion/2025/06/30/zohran-mamdani-new-york-city-primary-democratic-party-socialism/" target="_blank" rel="noopener noreferrer">The Primary Problem — Why What Just Happened in New York City Matters &#8599;</a></h2>
+        <div class="meta">Deseret News — June 30, 2025</div>
+        <p>Op-ed examining the implications of the New York City Democratic primary and what it signals about the current Democratic party and its messaging.</p>
+      </article>
+
+      
+
+      <article class="card">
+        <img src="better-tomorrow.png" alt="A Better Tomorrow" class="article-thumb" style="object-position: center 25%;">
+        <h2><a class="link" href="https://american-providence.org/blog/b/a-better-tomorrow" target="_blank" rel="noopener noreferrer">A Better Tomorrow &#8599;</a></h2>
+        <div class="meta">American Providence — June 4, 2025</div>
+        <p>Reflecting on the challenges and opportunities ahead, this piece emphasizes the importance of shaping a brighter future for the next generation.</p>
+      </article>
+
+      <article class="coming-soon">
+        Much more coming soon…
+      </article>
+
+      <footer>
+        Connect: 
+        <a href="https://www.linkedin.com/in/acrbenson/" target="_blank">LinkedIn</a> 
+        <br>
+
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

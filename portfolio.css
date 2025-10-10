@@ -1,0 +1,112 @@
+.avatar {
+    width: 50px;      /* set to desired size */
+    height: 50px;
+    border-radius: 50%;  
+    object-fit: cover;  
+}
+
+
+:root {
+  --accent: #0b63d3;    /* blue accent */
+  --bg: #0f172a;        /* dark background */
+  --card: #1e293b;      /* dark card background */
+  --muted: #94a3b8;     /* lighter text for meta info */
+  --text: #f8fafc;      /* main text color */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 900px;
+  margin: 48px auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  object-fit: cover; /* ensures your photo fills the avatar */
+}
+
+h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+p.lead {
+  margin: 6px 0 24px;
+  color: var(--muted);
+}
+
+.card {
+  background: var(--card);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+a.link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid rgba(11,99,211,0.3);
+  background: transparent;
+  color: var(--text);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+
+footer {
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width:540px) {
+  .container {
+    margin: 20px;
+    padding: 16px;
+  }
+}
