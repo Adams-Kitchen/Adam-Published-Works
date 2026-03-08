@@ -110,3 +110,11 @@ footer {
     padding: 16px;
   }
 }
+.article-thumb {
+  width: 100%;
+  max-height: 10000px; /* increase this value */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  display: block;
+}
