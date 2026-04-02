@@ -3,9 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Adam Benson — Published Works</title>
+  <title>Adam Benson · Published Works</title>
   <link rel="icon" type="image/png" href="notebook.png">
   <!-- Icon "Notebook" by Ylivdesign from Flaticon: https://www.flaticon.com/free-icons/notebook -->
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Adam Benson · Published Works" />
+  <meta property="og:description" content="A selection of academic, opinion, and policy pieces by Adam Benson — Political Science, BYU · Intern at Congressman Kennedy's office & Deseret News." />
+  <meta property="og:url" content="https://adams-kitchen.github.io/Adam-Published-Works/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://adams-kitchen.github.io/Adam-Published-Works/adam-photo.JPG" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Adam Benson · Published Works" />
+  <meta name="twitter:description" content="A selection of academic, opinion, and policy pieces by Adam Benson." />
+  <meta name="twitter:image" content="https://adams-kitchen.github.io/Adam-Published-Works/adam-photo.JPG" />
+
   <style>
     :root{
       --accent: #0b63d3;
@@ -13,7 +25,21 @@
       --card: #1e293b;
       --muted: #94a3b8;
       --text: #f8fafc;
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.18);
+      --gold-glow: rgba(212, 168, 67, 0.08);
+      --silver: #94a3b8;
+      --silver-dim: rgba(148, 163, 184, 0.18);
+      --silver-glow: rgba(148, 163, 184, 0.08);
     }
+    body.light-mode {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --silver-dim: rgba(0,0,0,0.08);
+  --silver-glow: rgba(0,0,0,0.04);
+}
 
     html, body {
       height: 100%;
@@ -22,10 +48,24 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
+      position: relative;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ctext x='50%25' y='50%25' font-size='16' text-anchor='middle' dominant-baseline='middle' fill='white'%3E%E2%98%85%3C/text%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 40px 40px;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 48px auto;
       padding: 20px;
     }
@@ -34,6 +74,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
+      margin-bottom: 36px;
     }
 
     .avatar {
@@ -48,28 +89,149 @@
       font-size: 22px;
     }
 
-    h2 {
-      font-size: 18px;
-      margin-bottom: 6px;
-    }
-
-    p.lead {
-      margin: 6px 0 24px;
+    .bio {
+      margin: 4px 0 0;
+      font-size: 13px;
       color: var(--muted);
     }
 
+    p.lead {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    /* ── Two-column layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .col-right {
+      position: sticky;
+      top: 24px;
+    }
+
+    /* ── Fade-in animation ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card, .card-featured, .coming-soon {
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .col-left .card:nth-child(1)  { animation-delay: 0.05s; }
+    .col-left .card:nth-child(2)  { animation-delay: 0.10s; }
+    .col-left .card:nth-child(3)  { animation-delay: 0.15s; }
+    .col-left .card:nth-child(4)  { animation-delay: 0.20s; }
+    .col-left .card:nth-child(5)  { animation-delay: 0.25s; }
+    .col-left .card:nth-child(6)  { animation-delay: 0.30s; }
+    .col-left .card:nth-child(7)  { animation-delay: 0.35s; }
+    .col-left .card:nth-child(8)  { animation-delay: 0.40s; }
+    .col-left .card:nth-child(9)  { animation-delay: 0.45s; }
+    .col-right .card-featured     { animation-delay: 0.10s; }
+    .coming-soon                  { animation-delay: 0.50s; }
+
+    /* ── Standard card ── */
     .card {
       background: var(--card);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      border: 1.5px solid var(--silver-dim);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3), 0 0 0 1px var(--silver-glow) inset;
       border-radius: 12px;
       padding: 18px;
       margin-bottom: 14px;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #c8d6e8, #e8f0f8, #c8d6e8, transparent);
+      opacity: 0.9;
+      transition: background 0.3s ease, opacity 0.3s ease;
     }
 
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.45), 0 0 24px rgba(148, 163, 184, 0.12);
+      border-color: rgba(148, 163, 184, 0.4);
+    }
+
+    /* ── Featured paper card ── */
+    .card-featured {
+      background: var(--card);
+      border: 1.5px solid var(--gold-dim);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.4), 0 0 0 1px var(--gold-glow) inset;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.75;
+    }
+
+    .card-featured:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.5), 0 0 24px rgba(212,168,67,0.1);
+      border-color: rgba(212, 168, 67, 0.35);
+    }
+
+    .featured-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(212,168,67,0.25);
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-bottom: 12px;
+    }
+
+    .op-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #7a8fa6, #c8d6e8, #e8f0f8, #c8d6e8, #7a8fa6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-color: var(--silver-dim);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-bottom: 12px;
+      color: var(--silver);
+    }
+
+    .card-featured h2 {
+      font-size: 17px;
+      line-height: 1.4;
     }
 
     .meta {
@@ -78,52 +240,119 @@
       margin-top: 6px;
     }
 
-    a.link {
-      font-size: x-large;
-      color: var(--accent);
+    a.link-silver {
+      background: linear-gradient(90deg, #7a8fa6, #c8d6e8, #e8f0f8, #c8d6e8, #7a8fa6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       text-decoration: none;
       font-weight: 600;
+      font-size: x-large;
+      line-height: 1.4;
+      display: block;
+      transition: opacity 0.2s ease;
     }
 
-    a.link:hover {
+    a.link-silver:hover {
+      opacity: 0.8;
       text-decoration: underline;
-      color: #6ea8ff;
+      text-decoration-color: #c8d6e8;
     }
 
-  .article-thumb {
-  width: 100%;
-  max-height: 180px;
-  object-fit: cover;
-  object-position: center 30%; /* default for mobile/narrow */
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
+    a.link-gold {
+      background: linear-gradient(90deg, #a07820, #d4a843, #f0cc6e, #d4a843, #a07820);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: x-large;
+      line-height: 1.4;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
 
-@media (min-width: 500px) {
-  /* wider screens */
-  .article-thumb.zohran {
-    object-position: center 10%; /* shifts Zohran image down more on wide screens */
-  }
-}
+    a.link-gold:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+      text-decoration-color: #d4a843;
+    }
+
+    .article-thumb {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      object-position: center 30%;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .article-thumb-featured {
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      object-position: center 30%;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 500px) {
+      .article-thumb.zohran {
+        object-position: center 10%;
+      }
+    }
 
     .coming-soon {
       text-align: center;
       font-weight: 600;
-      color: white;
-      font-size: 1.1em;
-      background: linear-gradient(135deg,#0b63d3,#6ea8ff);
-      background-size: 200% 200%;
+      color: var(--muted);
+      font-size: 1em;
+      background: var(--card);
+      border: 1.5px solid var(--silver-dim);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3), 0 0 0 1px var(--silver-glow) inset;
       border-radius: 12px;
       padding: 18px;
-      margin-bottom: 14px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.5);
-      animation: pulse 5s ease-in-out infinite;
+      margin-top: 6px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    @keyframes pulse {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+    .coming-soon::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #c8d6e8, #e8f0f8, #c8d6e8, transparent);
+      opacity: 0.9;
+      transition: background 0.3s ease, opacity 0.3s ease;
     }
+
+    .coming-soon:hover {
+      border-color: rgba(212, 168, 67, 0.35);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.45), 0 0 24px rgba(212, 168, 67, 0.1);
+    }
+
+    .coming-soon:hover::before {
+      background: linear-gradient(90deg, transparent, var(--gold), #f0cc6e, var(--gold), transparent);
+      opacity: 0.75;
+    }
+   
+.dots::after {
+  content: '';
+  display: inline-block;
+  animation: dots-loop 5s linear infinite; /* slower, smooth cycle */
+}
+
+@keyframes dots-loop {
+  0%   { content: ''; }
+  16.66% { content: '.'; }
+  33.33% { content: '..'; }
+  50%   { content: '...'; }
+  66.66% { content: '..'; }
+  83.33% { content: '.'; }
+  100%  { content: ''; }
+}
 
     footer {
       margin-top: 36px;
@@ -137,13 +366,24 @@
       color: #6ea8ff;
     }
 
-    @media (max-width:540px) {
+    /* ── Mobile: single column, featured on top ── */
+    @media (max-width: 720px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .col-right {
+        position: static;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 540px) {
       .container {
         margin: 20px;
         padding: 16px;
       }
     }
-
   </style>
 </head>
 <body>
@@ -151,96 +391,226 @@
     <header>
       <img src="adam-photo.JPG" alt="My Photo" class="avatar">
       <div>
-        <h1>Adam Benson — Published Works</h1>
-        <p class="lead">A selection of opinion and policy pieces, starting with the most recent. Click any title to open the original article.</p>
+        <h1>Adam Benson · Published Works</h1>
+        <p class="bio">Political Science, BYU · Intern at Congressman Mike Kennedy's office &amp; Deseret News</p>
+        <p class="lead" id="lead-text"></p>
       </div>
+      <!-- <button id="theme-toggle" style="
+  margin-left:auto;
+  background:transparent;
+  border:1px solid var(--silver-dim);
+  color:var(--muted);
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+">
+  Toggle Mode
+</button> -->
     </header>
 
     <main>
-      <!-- <article class="card">
-        <img src="" alt="" class="article-thumb">
-        <h2><a class="link" href="" target="_blank" rel="noopener noreferrer">
-        Neither Melos Nor Sparta: Realism, Not Utopianism
-        </a></h2>
-        <div class="meta">BYU Political Review — April 2026 Edition</div>
-        <p></p>
-      </article> -->
+      <div class="layout">
 
-      <article class="card">
-        <img src="hopeful_future.png" alt="" class="article-thumb">
-        <h2><a class="link" href="https://politicalreview.byu.edu/march-2026/the-past-misquoted-learning-nothing" target="_blank" rel="noopener noreferrer">
-        The Past, Misquoted: Learning Nothing
-        </a></h2>
-        <div class="meta">BYU Political Review — March 2026 Edition</div>
-        <p>A warning against weaponizing history and the political violence it quietly licenses.</p>
-      </article>
+        <!-- ── Left column: op-eds ── -->
+        <div class="col-left">
 
-      <article class="card">
-        <img src="International Law.PNG" alt="International Law? lol" class="article-thumb" style="object-position: center 40%;">
-        <h2><a class="link" href="https://politicalreview.byu.edu/february-2026/be-careful-what-you-wish-for-life-after-u-s-hegemony" target="_blank" rel="noopener noreferrer">
-        Be Careful What You Wish For: Life After U.S. Hegemony
-        </a></h2>
-        <div class="meta">BYU Political Review — February 2026 Edition</div>
-        <p>Global peace and stability depend on American hegemony, because without positive hegemonic enforcement, history shows the world quickly descends into chaos and empowers aggressive powers.</p>
-      </article>
+          <article class="card">
+            <div class="op-label">Opinion</div>
+            <img src="passingthetorch.png" alt="Passing the Torch" class="article-thumb">
+            <h2><a class="link-silver" href="https://politicalreview.byu.edu/april-2026/neither-athens-nor-sparta-realism-not-utopianism" target="_blank" rel="noopener noreferrer">
+            Neither Athens Nor Sparta: Realism, Not Utopianism
+            </a></h2>
+            <div class="meta">BYU Political Review — April 2026 Edition</div>
+            <p>A realist foreign policy argument drawing on Hobbes, Thucydides, Roosevelt, and Reagan to trace the philosophical roots of peace through strength from ancient Greece to the present, evaluating American foreign policy through that lens.</p>
+          </article>
 
-      <article class="card">
-        <img src="life.png" alt="choose life" class="article-thumb">
-        <h2><a class="link" href="https://politicalreview.byu.edu/december-2025/agency-law-and-the-sanctity-of-life-the-weightier-matters" target="_blank" rel="noopener noreferrer">
-        Agency, Law, and the Sanctity of Life: The Weightier Matters
-        </a></h2>
-        <div class="meta">BYU Political Review — December 2025 Edition</div>
-        <p>Genuine respect for human agency and the rule of law demands the legal and moral protection of unborn life, since justice loses its meaning when the most vulnerable are excluded from its care.</p>
-      </article>
+          <article class="card">
+            <div class="op-label">Opinion</div>
+            <img src="hopeful_future.png" alt="Hopeful Future" class="article-thumb">
+            <h2><a class="link-silver" href="https://politicalreview.byu.edu/march-2026/the-past-misquoted-learning-nothing" target="_blank" rel="noopener noreferrer">
+            The Past, Misquoted: Learning Nothing
+            </a></h2>
+            <div class="meta">BYU Political Review — March 2026 Edition</div>
+            <p>A warning against weaponizing history and the political violence it quietly licenses.</p>
+          </article>
 
-      <article class="card">
-        <img src="Vladimir Mamdani.png" alt="Zohran-Lenin-propaganda" class="article-thumb" style="object-position: center 20%;">
-        <h2><a class="link" href="https://politicalreview.byu.edu/november-2025/zohran-mamdani-a-socialist-gift-to-the-republican-party" target="_blank" rel="noopener noreferrer">
-        Zohran Mamdani: A Socialist Gift to the Republican Party?
-        </a></h2>
-        <div class="meta">BYU Political Review — November 2025 Edition</div>
-        <p>The article warns that Zohran Mamdani’s embrace of socialist policies poses a danger to America’s economic and political stability, offering Republicans an easy target while pulling Democrats further toward radical ideas.</p>
-      </article>
-      
-      <article class="card">
-        <img src="declaration.JPG" alt="Endowed by Our Creator" class="article-thumb">
-        <h2><a class="link" href="https://politicalreview.byu.edu/october-2025/endowed-by-our-creator-why-rights-come-from-our-god-not-our-government" target="_blank" rel="noopener noreferrer">Endowed by Our Creator: Why Rights Come from Our God, Not Our Government &#8599;</a></h2>
-        <div class="meta">BYU Political Review — October 2025 Edition</div>
-        <p>Analyzes the philosophical origins of individual rights in American political thought, arguing that these rights stem from divine principles rather than government authority, and explores the implications for modern civic discourse.</p>
-      </article>
-      
-      <article class="card">
-        <img src="coca-cola.avif" alt="Sweetening the Deal" class="article-thumb" style="object-position: 50%;">
-        <h2><a class="link" href="https://www.deseret.com/opinion/2025/07/27/ending-sugar-tariffs-healthy-economy/" target="_blank" rel="noopener noreferrer">Sweetening the Deal — Ending Sugar Tariffs for a Healthier Economy &#8599;</a></h2>
-        <div class="meta">Deseret News — July 27, 2025</div>
-        <p>Argument in favor of removing U.S. sugar tariffs to improve consumer prices and support long-term economic efficiency. This was written and published shortly after President Trump announced that Coca-Cola would be switching from corn syrup to cane sugar.</p>
-      </article>
+          <article class="card">
+            <div class="op-label">Opinion</div>
+            <img src="International Law.PNG" alt="International Law? lol" class="article-thumb" style="object-position: center 40%;">
+            <h2><a class="link-silver" href="https://politicalreview.byu.edu/february-2026/be-careful-what-you-wish-for-life-after-u-s-hegemony" target="_blank" rel="noopener noreferrer">
+            Be Careful What You Wish For: Life After U.S. Hegemony
+            </a></h2>
+            <div class="meta">BYU Political Review — February 2026 Edition</div>
+            <p>Global peace and stability depend on American hegemony, because without positive hegemonic enforcement, history shows the world quickly descends into chaos and empowers aggressive powers.</p>
+          </article>
 
-      <article class="card">
-        <img src="Zohran.avif" alt="NYC Primary" class="article-thumb zohran">
-        <h2><a class="link" href="https://www.deseret.com/opinion/2025/06/30/zohran-mamdani-new-york-city-primary-democratic-party-socialism/" target="_blank" rel="noopener noreferrer">The Primary Problem — Why What Just Happened in New York City Matters &#8599;</a></h2>
-        <div class="meta">Deseret News — June 30, 2025</div>
-        <p>Op-ed examining the implications of the New York City Democratic primary and what it signals about the current Democratic party and its messaging.</p>
-      </article>
+          <article class="card">
+            <div class="op-label">Opinion</div>
+            <img src="life.png" alt="choose life" class="article-thumb">
+            <h2><a class="link-silver" href="https://politicalreview.byu.edu/december-2025/agency-law-and-the-sanctity-of-life-the-weightier-matters" target="_blank" rel="noopener noreferrer">
+            Agency, Law, and the Sanctity of Life: The Weightier Matters
+            </a></h2>
+            <div class="meta">BYU Political Review — December 2025 Edition</div>
+            <p>Genuine respect for human agency and the rule of law demands the legal and moral protection of unborn life, since justice loses its meaning when the most vulnerable are excluded from its care.</p>
+          </article>
 
-      <article class="card">
-        <img src="better-tomorrow.png" alt="A Better Tomorrow" class="article-thumb" style="object-position: center 25%;">
-        <h2><a class="link" href="https://american-providence.org/blog/b/a-better-tomorrow" target="_blank" rel="noopener noreferrer">A Better Tomorrow &#8599;</a></h2>
-        <div class="meta">American Providence — June 4, 2025</div>
-        <p>Reflecting on the challenges and opportunities ahead, this piece emphasizes the importance of shaping a brighter future for the next generation.</p>
-      </article>
+          <article class="card">
+            <div class="op-label">Opinion</div>
+            <img src="Vladimir Mamdani.png" alt="Zohran-Lenin-propaganda" class="article-thumb" style="object-position: center 20%;">
+            <h2><a class="link-silver" href="https://politicalreview.byu.edu/november-2025/zohran-mamdani-a-socialist-gift-to-the-republican-party" target="_blank" rel="noopener noreferrer">
+            Zohran Mamdani: A Socialist Gift to the Republican Party?
+            </a></h2>
+            <div class="meta">BYU Political Review — November 2025 Edition</div>
+            <p>The article warns that Zohran Mamdani's embrace of socialist policies poses a danger to America's economic and political stability, offering Republicans an easy target while pulling Democrats further toward radical ideas.</p>
+          </article>
 
-      <article class="coming-soon">
-        Much more coming soon…
-      </article>
+          <article class="card">
+            <div class="op-label">Opinion</div>
+            <img src="declaration.JPG" alt="Endowed by Our Creator" class="article-thumb">
+            <h2><a class="link-silver" href="https://politicalreview.byu.edu/october-2025/endowed-by-our-creator-why-rights-come-from-our-god-not-our-government" target="_blank" rel="noopener noreferrer">Endowed by Our Creator: Why Rights Come from Our God, Not Our Government &#8599;</a></h2>
+            <div class="meta">BYU Political Review — October 2025 Edition</div>
+            <p>Analyzes the philosophical origins of individual rights in American political thought, arguing that these rights stem from divine principles rather than government authority, and explores the implications for modern civic discourse.</p>
+          </article>
 
-      <footer>
-        Connect: 
-        <a href="https://www.linkedin.com/in/acrbenson/" target="_blank">LinkedIn</a> 
-        <br>
+          <article class="card">
+            <div class="op-label">Opinion</div>
+            <img src="coca-cola.avif" alt="Sweetening the Deal" class="article-thumb" style="object-position: 50%;">
+            <h2><a class="link-silver" href="https://www.deseret.com/opinion/2025/07/27/ending-sugar-tariffs-healthy-economy/" target="_blank" rel="noopener noreferrer">Sweetening the Deal — Ending Sugar Tariffs for a Healthier Economy &#8599;</a></h2>
+            <div class="meta">Deseret News — July 27, 2025</div>
+            <p>Argument in favor of removing U.S. sugar tariffs to improve consumer prices and support long-term economic efficiency. This was written and published shortly after President Trump announced that Coca-Cola would be switching from corn syrup to cane sugar.</p>
+          </article>
 
-      </footer>
+          <article class="card">
+            <div class="op-label">Opinion</div>
+            <img src="Zohran.avif" alt="NYC Primary" class="article-thumb zohran">
+            <h2><a class="link-silver" href="https://www.deseret.com/opinion/2025/06/30/zohran-mamdani-new-york-city-primary-democratic-party-socialism/" target="_blank" rel="noopener noreferrer">The Primary Problem — Why What Just Happened in New York City Matters &#8599;</a></h2>
+            <div class="meta">Deseret News — June 30, 2025</div>
+            <p>Op-ed examining the implications of the New York City Democratic primary and what it signals about the current Democratic party and its messaging.</p>
+          </article>
+
+          <article class="card">
+            <div class="op-label">Opinion</div>
+            <img src="better-tomorrow.png" alt="A Better Tomorrow" class="article-thumb" style="object-position: center 25%;">
+            <h2><a class="link-silver" href="https://american-providence.org/blog/b/a-better-tomorrow" target="_blank" rel="noopener noreferrer">A Better Tomorrow &#8599;</a></h2>
+            <div class="meta">American Providence — June 4, 2025</div>
+            <p>Reflecting on the challenges and opportunities ahead, this piece emphasizes the importance of shaping a brighter future for the next generation.</p>
+          </article>
+
+        </div><!-- /col-left -->
+
+        <!-- ── Right column: featured academic paper ── -->
+        <div class="col-right">
+          <article class="card-featured">
+            <div class="featured-label">Forthcoming Academic Publication</div>
+            <img src="Turkmenbasy.png" alt="Turkmenistan Paper" class="article-thumb-featured">
+            <h2><a class="link-gold" href="" target="_blank" rel="noopener noreferrer">
+              Institutionalized Religion and Forging a Dictator: Media, Propaganda, and the Personality Cult of "Türkmenbaşy" (1991–2006)
+            </a></h2>
+            <div class="meta">BYU Sigma: Journal of Political and International Studies — Volume XLIII (43), Publishing Mid-April 2026</div>
+            <p style="margin-top: 10px; font-size: 15px;">How do authoritarian regimes survive? This paper examines the personality cult of Saparmurat Niyazov—Türkmenbaşy, the self-proclaimed "Father of All Turkmen"—arguing that political myth is not vanity but a primary mechanism of regime durability, measured against the historical precedent of Stalin.</p>
+          </article>
+        </div><!-- /col-right -->
+
+      </div><!-- /layout -->
+
+     <div class="coming-soon">
+  More coming soon<span class="dots"></span>
+</div>
+
+  <footer>
+  <div>© 2026 Adam Benson</div>
+  <div style="opacity:0.7;">
+    Designed & built by Adam Benson · HTML, CSS, & JavaScript
+  </div>
+  <div>
+    <a href="https://www.linkedin.com/in/acrbenson/" target="_blank">LinkedIn</a>
+  </div>
+</footer>
     </main>
   </div>
+
+    <!-- ══════════════════════════════════════════
+       SCRIPTS
+       Order matters:
+       1. Theme  — runs immediately (no DOMContentLoaded) so saved
+                   preference is applied before first paint
+       2. Reveal — waits for DOM, adds .visible via IntersectionObserver
+       3. Typist — waits for DOM, animates the lead paragraph
+  ══════════════════════════════════════════ -->
+
+<!-- 1. Theme toggle -->
+  <!-- <script>
+  (function () {
+    var KEY = 'adam-theme';
+ 
+    function applyTheme(mode) {
+      if (mode === 'light') {
+        document.body.classList.add('light-mode');
+      } else {
+        document.body.classList.remove('light-mode');
+      }
+      var icon  = document.getElementById('toggle-icon');
+      var label = document.getElementById('toggle-label');
+      if (icon)  icon.textContent  = mode === 'light' ? '☀️' : '🌙';
+      if (label) label.textContent = mode === 'light' ? 'Dark Mode' : 'Light Mode';
+    }
+ 
+    // Apply saved pref immediately (elements exist — script is at end of body)
+    applyTheme(localStorage.getItem(KEY) || 'dark');
+ 
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var next = document.body.classList.contains('light-mode') ? 'dark' : 'light';
+      applyTheme(next);
+      localStorage.setItem(KEY, next);
+    });
+  })();
+  </script> -->
+
+ <!-- 2. Scroll-reveal — class only, never touches inline styles -->
+  <script>
+  (function () {
+    var els = document.querySelectorAll('.card, .card-featured, .coming-soon');
+ 
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target); // fire once, leave the element alone forever
+        }
+      });
+    }, { threshold: 0.08 });
+ 
+    els.forEach(function (el) { io.observe(el); });
+  })();
+  </script>
+<!-- 3. Typewriter on #lead-text -->
+  <script>
+  (function () {
+    var el   = document.getElementById('lead-text');
+    var text = 'A selection of academic, opinion, and policy pieces, starting with the most recent. Click any title to open the original article.';
+    var i    = 0;
+ 
+    var cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+ 
+    function tick() {
+      if (i <= text.length) {
+        el.textContent = text.slice(0, i);
+        el.appendChild(cursor);
+        i++;
+        setTimeout(tick, i === 1 ? 400 : 28);
+      } else {
+        setTimeout(function () {
+          cursor.style.transition = 'opacity 0.6s ease';
+          cursor.style.opacity    = '0';
+          setTimeout(function () { cursor.remove(); }, 700);
+        }, 1800);
+      }
+    }
+ 
+    setTimeout(tick, 350);
+  })();
+  </script>
 </body>
 </html>
